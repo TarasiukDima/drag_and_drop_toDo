@@ -1,0 +1,30 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.header {
+    padding: 15px 20px;
+    text-align: center;
+    color: $whiteColor;
+    background-color: $darkBrown;
+
+    .header__title {
+        font-weight: bold;
+        font-size: 32px;
+    }
+}
+
+@include tablet() {
+    .header .header__title {
+        font-size: 30px;
+    }
+}
+@include smallTablet() {
+    .header .header__title {
+       font-size: 28px;
+    }
+}
+@include mobile() {
+    .header .header__title {
+        font-size: 24px;
+    }
+}

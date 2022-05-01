@@ -1,0 +1,11 @@
+@import "../../assets/scss/variables";
+
+.todo-content {
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    width: 100%;
+    min-height: max(60vh, 600px);
+    padding: $paddingContent;
+    background-color: $light;
+}

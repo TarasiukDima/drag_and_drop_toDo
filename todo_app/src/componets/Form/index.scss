@@ -1,0 +1,53 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.todo-content__form {
+    @include dflex(center, stretch);
+
+    position: absolute;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    width: calc(100% - $paddingContent);
+    max-width: 400px;
+    flex-wrap: wrap;
+    transform: translate(-50%, -50%);
+
+    &_error {
+        width: 100%;
+        margin-bottom: 5px;
+        font-size: 16px;
+        color: $red;
+        text-align: center;
+    }
+
+    &_input {
+        flex-grow: 1;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: $borderRadius 0 0 $borderRadius;
+        border: 2px solid $withOutColor;
+        box-shadow: $boxShadow;
+
+        &.error {
+            border-color: $red;
+        }
+    }
+
+    &_submit {
+        padding: 10px 20px;
+        font-weight: bold;
+        font-size: 16px;
+        text-transform: uppercase;
+        border-radius: 0 $borderRadius $borderRadius 0;
+        border: 2px solid $withOutColor;
+        color: $whiteColor;
+        background-color: $black;
+        transition: $transitionTime;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $blue;
+        }
+    }
+}

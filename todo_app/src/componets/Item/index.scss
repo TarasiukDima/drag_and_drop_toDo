@@ -1,0 +1,74 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.todo-item {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: max-content;
+    min-width: 290px;
+    max-width: calc(100% - $paddingContent * 2);
+    padding: 14px calc($sizeItemButton + $sizeItemButton - 5px) 14px 20px;
+    border-radius: $borderRadius;
+    box-shadow: $boxShadow;
+    color: $whiteColor;
+    cursor: pointer;
+
+    &.orange {
+        background-color: $orange;
+    }
+
+    &.blue {
+        background-color: $blue;
+    }
+
+    &.green {
+        background-color: $green;
+    }
+
+    &.red {
+        background-color: $darkRed;
+    }
+
+    &.black {
+        background-color: $black;
+    }
+
+    &.brown {
+        background-color: $brown;
+    }
+
+    &__content {
+        font-size: 18px;
+    }
+
+    &__button {
+        position: absolute;
+        top: calc($sizeItemButton / 5);
+        right: calc($sizeItemButton / 5);
+        z-index: 1;
+        width: $sizeItemButton;
+        height: $sizeItemButton;
+        line-height: $sizeItemButton;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        border: none;
+        border-radius: calc($borderRadius / 2);
+        color: $black;
+        background-color: $whiteColor;
+    }
+}
+
+@include smallTablet() {
+    .todo-item {
+        padding: 12px calc($sizeItemButton + $sizeItemButton - 5px) 12px 10px;
+    }
+}
+@include mobile() {
+    .todo-item {
+        &__content {
+            font-size: 16px;
+        }
+    }
+}
