@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LOCALSTORAGE_NAME } from '../../settings';
-import { mockListItems, testClassName, testText } from '../../settings/testData';
+import { mockListItems, testText } from '../../settings/testData';
 import Content from './Content';
 
 interface IFakeStore {

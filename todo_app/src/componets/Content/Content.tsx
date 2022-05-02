@@ -52,14 +52,14 @@ const Content = () => {
             checkKeysInObj(['id', 'text', 'classColor', 'x', 'y', 'zIndex'], arrToDo[0])
         ) {
             setTodoList(arrToDo);
-        }
 
-        // rewrite max zindex el;
-        const findMaxZIndex = arrToDo.reduce((accPreority, { zIndex }) => {
-            return zIndex > accPreority ? zIndex : accPreority;
-        }, MAX_ITEMS_TO_DO);
-        if (findMaxZIndex > zIndex) {
-            setzIndex(findMaxZIndex);
+            // rewrite max zindex el;
+            const findMaxZIndex = arrToDo.reduce((accPreority, { zIndex }) => {
+                return zIndex > accPreority ? zIndex : accPreority;
+            }, MAX_ITEMS_TO_DO);
+            if (findMaxZIndex > MAX_ITEMS_TO_DO) {
+                setzIndex(findMaxZIndex);
+            }
         }
     }, []);
 
