@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TChangeElHandler } from '../../types';
+import { TChangeElHandler } from '../../types/common';
 import Input from '../Input';
 import './index.scss';
 
@@ -11,7 +11,13 @@ interface IFormProps {
     addTodo: TChangeElHandler<HTMLFormElement>;
 }
 
-const Form: FC<IFormProps> = ({ inputValue, error, errorText, changeInputValue, addTodo }) => {
+const Form: FC<IFormProps> = ({
+    inputValue,
+    error,
+    errorText,
+    changeInputValue,
+    addTodo,
+}: IFormProps) => {
     return (
         <form className="todo-content__form" onSubmit={addTodo}>
             {error && <span className="todo-content__form_error">{errorText}</span>}

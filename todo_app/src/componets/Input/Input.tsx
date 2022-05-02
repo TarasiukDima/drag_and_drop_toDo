@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TChangeElHandler } from '../../types';
+import { TChangeElHandler } from '../../types/common';
 
 export type IInputProps = {
     type: string;
