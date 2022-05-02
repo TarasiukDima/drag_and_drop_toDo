@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Form from '../Form';
 import List from '../List';
 import { listColors, LOCALSTORAGE_NAME, MAX_ITEMS_TO_DO } from '../../settings';
-import { randNumber } from '../../utils';
+import { checkKeysInObj, checkNotOverviewCoords, randNumber } from '../../utils';
 import { ITodoItem } from '../Item/Item';
 import {
     ICoordsMouse,
@@ -20,13 +20,6 @@ export interface ICoordsInfo extends ICoordsMouse {
 
 export type TChangeItemFields = (id: number | string, coordsEl: ICoordsInfo, end?: boolean) => void;
 
-type TCheckNotOverviewCoords = (
-    coord: number,
-    valueMin: number,
-    valueMax: number,
-    considerMax: number
-) => number;
-
 const Content = () => {
     const [error, setError] = useState<boolean>(false);
     const [errorText, setErrorText] = useState<string>('');
@@ -43,11 +36,21 @@ const Content = () => {
 
     // check items in localstorage
     useEffect(() => {
-        const arrToDo: Array<ITodoItem> = JSON.parse(
-            localStorage.getItem(LOCALSTORAGE_NAME) || '[]'
-        );
+        let goodLocalStorageObj = true;
+        let arrToDo: Array<ITodoItem> = [];
 
-        if (arrToDo.length > 0 && arrToDo[0].hasOwnProperty('text')) {
+        try {
+            arrToDo = JSON.parse(localStorage.getItem(LOCALSTORAGE_NAME) || '[]');
+        } catch {
+            goodLocalStorageObj = false;
+        }
+
+        if (
+            goodLocalStorageObj &&
+            Array.isArray(arrToDo) &&
+            arrToDo.length > 0 &&
+            checkKeysInObj(['id', 'text', 'classColor', 'x', 'y', 'zIndex'], arrToDo[0])
+        ) {
             setTodoList(arrToDo);
         }
 
@@ -101,23 +104,6 @@ const Content = () => {
         ]);
         setzIndex(zIndex + 1);
         setTodoStr('');
-    };
-
-    const checkNotOverviewCoords: TCheckNotOverviewCoords = (
-        coord: number,
-        valueMin: number,
-        valueMax: number,
-        considerMax: number
-    ) => {
-        if (coord < valueMin) return valueMin;
-
-        const maxValueCan = valueMax - considerMax;
-
-        if (coord > maxValueCan) {
-            if (maxValueCan < valueMin) return valueMin;
-            return maxValueCan;
-        }
-        return coord;
     };
 
     const changeItemPosition: TChangeItemFields = (id, coordsEl, end = false) => {

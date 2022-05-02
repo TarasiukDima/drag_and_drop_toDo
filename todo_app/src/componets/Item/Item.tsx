@@ -71,7 +71,7 @@ const Item: FC<ITodoItemProps> = ({
     };
 
     const sendInfoTouch = (event: React.TouchEvent, end = false) => {
-        const { clientX, clientY } = event.changedTouches[0];
+        const { clientX, clientY } = event.touches[0];
         const { offsetWidth, offsetHeight } = event.target as HTMLLIElement;
 
         changeItemPosition(

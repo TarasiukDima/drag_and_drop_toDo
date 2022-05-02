@@ -11,16 +11,20 @@ interface ITodoListProps {
 
 const List: FC<ITodoListProps> = ({ todoList, removeToDo, changeItemPosition }: ITodoListProps) => {
     return (
-        <ul className="todo-content__list">
-            {todoList.map((oneToDo: ITodoItem) => (
-                <Item
-                    key={oneToDo.id}
-                    {...oneToDo}
-                    removeToDo={removeToDo}
-                    changeItemPosition={changeItemPosition}
-                />
-            ))}
-        </ul>
+        <>
+            {todoList.length > 0 && (
+                <ul className="todo-content__list">
+                    {todoList.map((oneToDo: ITodoItem) => (
+                        <Item
+                            key={oneToDo.id}
+                            {...oneToDo}
+                            removeToDo={removeToDo}
+                            changeItemPosition={changeItemPosition}
+                        />
+                    ))}
+                </ul>
+            )}
+        </>
     );
 };
 

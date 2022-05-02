@@ -1,12 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { testClassName, testText } from '../../settings/testData';
 import Input from './Input';
 
 describe('Input', () => {
-    const testClassName = 'test';
-    const testText = 'test';
-
     it('render required input', () => {
         render(<Input type="text" name="test_input" />);
 

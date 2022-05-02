@@ -1,9 +1,17 @@
-import React from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+it('renders App', () => {
     render(<App />);
-    //   const linkElement = screen.getByText(/learn react/i);
-    //   expect(linkElement).toBeInTheDocument();
+
+    const header = screen.getByRole('banner');
+    const title = screen.getByRole('heading');
+    const form = screen.getByRole('textbox');
+    const list = screen.queryByRole('list');
+
+    expect(header).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
+    expect(form).toBeInTheDocument();
+    expect(list).not.toBeInTheDocument();
 });
